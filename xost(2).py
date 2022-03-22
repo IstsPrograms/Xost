@@ -122,7 +122,7 @@ def main(command):
 		#Убавляет 1 от переменной
 	
 	#Ищет while и : для начала цикла
-	if (command.find("while") >= 0 and command.find(":") >= 0 and command.find("def") == -1 and command.find("if") == -1):
+	if (command.find("while") >= 0 and command.find(".") >= 0 and command.find("def") == -1):
 		whi = command.replace(" ", "") #Удаляет пробелы
 		wh = whi.split(".") #Разделяет командк по символу .
 		wh = wh[1].split(",") #Берём часть с командами и делим символом ,
@@ -165,6 +165,25 @@ def main(command):
 			ifv2 = ifc[1].replace(" ", "") #Задает имя второй переменной
 			#Сравнивает на то, одинаковы ли 2 переменные
 			if (varsVal[varsName.index(ifv1)] == varsVal[varsName.index(ifv2)]):
+				#Проходится по всем командам
+				for i in range(len(ifb)):
+					main(ifb[i])
+		
+		if (ifa[1].find(">=") >= 0):
+			ifc = ifa[1].split(">=") #Разделяет по
+			ifv1 = ifc[0].replace(" ", "") #Задает имя первой переменной
+			ifv2 = ifc[1].replace(" ", "") #Задает имя второй переменной
+			#Сравнивает на то, одинаковы ли 2 переменные
+			if (varsVal[varsName.index(ifv1)] >= varsVal[varsName.index(ifv2)]):
+				#Проходится по всем командам
+				for i in range(len(ifb)):
+					main(ifb[i])
+		if (ifa[1].find("<=") >= 0):
+			ifc = ifa[1].split("<=") #Разделяет по
+			ifv1 = ifc[0].replace(" ", "") #Задает имя первой переменной
+			ifv2 = ifc[1].replace(" ", "") #Задает имя второй переменной
+			#Сравнивает на то, одинаковы ли 2 переменные
+			if (varsVal[varsName.index(ifv1)] <= varsVal[varsName.index(ifv2)]):
 				#Проходится по всем командам
 				for i in range(len(ifb)):
 					main(ifb[i])
